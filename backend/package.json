@@ -1,0 +1,30 @@
+{
+  "name": "product-backend",
+  "version": "1.0.0",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "test": "",
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "author": "bakary kone",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "eslint": "^8.57.0",
+    "express": "^4.19.2",
+    "mongodb": "^6.8.0",
+    "mongoose": "^8.5.0"
+  },
+  "devDependencies": {
+    "@eslint/compat": "^1.1.1",
+    "@eslint/js": "^9.6.0",
+    "eslint-plugin-react": "^7.34.3",
+    "globals": "^15.8.0",
+    "nodemon": "^3.1.4"
+  }
+}
