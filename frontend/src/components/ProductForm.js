@@ -1,14 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchProduct, updateProduct, createProduct } from '../actions/actions';
-import { TextField, Button, Container } from '@mui/material';
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProduct, updateProduct } from "../actions/actions";
+import { TextField, Button, Container, Box, MenuItem } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
-const ProductForm = ({ productId }) => {
+const ProductForm = ({ productId, onSubmit }) => {
   const dispatch = useDispatch();
-  const product = useSelector(state => state.product);
+  const navigate = useNavigate();
+  const product = useSelector((state) => state.product);
   const [formData, setFormData] = useState({
-    name: '',
-    type: '',
+    name: "",
+    type: "",
     price: 0,
     rating: 0,
     warranty_years: 0,
@@ -27,23 +30,32 @@ const ProductForm = ({ productId }) => {
     }
   }, [product]);
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setFormData({
+      ...formData,
+      [name]: name === "available" ? value === "true" : value,
+    });
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (productId) {
-      dispatch(updateProduct(productId, formData));
+      await dispatch(updateProduct(productId, formData));
+      toast.success(`Le produit a bien été modifié`);
+      navigate("/");
     } else {
-      dispatch(createProduct(formData));
+      await onSubmit(formData);
     }
   };
 
+  const handleCancel = () => {
+    navigate("/");
+  };
+
   return (
-    <Container>
-      <form onSubmit={handleSubmit}>
+    <Container maxWidth="sm">
+      <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
         <TextField
           name="name"
           label="Name"
@@ -51,6 +63,7 @@ const ProductForm = ({ productId }) => {
           onChange={handleChange}
           fullWidth
           margin="normal"
+          required
         />
         <TextField
           name="type"
@@ -59,6 +72,7 @@ const ProductForm = ({ productId }) => {
           onChange={handleChange}
           fullWidth
           margin="normal"
+          required
         />
         <TextField
           name="price"
@@ -67,6 +81,9 @@ const ProductForm = ({ productId }) => {
           onChange={handleChange}
           fullWidth
           margin="normal"
+          required
+          type="number"
+          inputProps={{ step: "0.01" }}
         />
         <TextField
           name="rating"
@@ -75,6 +92,9 @@ const ProductForm = ({ productId }) => {
           onChange={handleChange}
           fullWidth
           margin="normal"
+          required
+          type="number"
+          inputProps={{ min: "0", max: "5", step: "0.1" }}
         />
         <TextField
           name="warranty_years"
@@ -83,6 +103,8 @@ const ProductForm = ({ productId }) => {
           onChange={handleChange}
           fullWidth
           margin="normal"
+          required
+          type="number"
         />
         <TextField
           name="available"
@@ -91,11 +113,21 @@ const ProductForm = ({ productId }) => {
           onChange={handleChange}
           fullWidth
           margin="normal"
-        />
-        <Button type="submit" color="primary" variant="contained">
-          {productId ? 'Update' : 'Create'}
-        </Button>
-      </form>
+          required
+          select
+        >
+          <MenuItem value={true}>Oui</MenuItem>
+          <MenuItem value={false}>Non</MenuItem>
+        </TextField>
+        <Box sx={{ display: "flex", justifyContent: "space-between", mt: 2 }}>
+          <Button type="submit" color="primary" variant="contained">
+            {productId ? "Update" : "Ajouter"}
+          </Button>
+          <Button color="secondary" variant="contained" onClick={handleCancel}>
+            Cancel
+          </Button>
+        </Box>
+      </Box>
     </Container>
   );
 };
