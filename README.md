@@ -1,3 +1,7 @@
+# Product App 
+
+![Aperçu de l'application](./frontend/public/product-app.png "Product APP")
+
 ## Backend
 
 ### Setup
