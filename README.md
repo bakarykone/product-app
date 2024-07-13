@@ -1,6 +1,6 @@
 # Product App 
 
-![Aperçu de l'application](./frontend/public/product-app.png "Product APP")
+![Aperçu de l'application](./frontend/public/product_app.v2.png "Product APP")
 
 ## Backend
 
