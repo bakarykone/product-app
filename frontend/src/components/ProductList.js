@@ -6,15 +6,15 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 const ProductList = ({ products }) => {
   const isTabletOrMobile = useMediaQuery("(max-width: 1000px)");
-  
+
   if (products.length === 0) {
     return (
-      <Box sx={{ textAlign: 'center', mt: 4 }}>
+      <Box sx={{ textAlign: "center", mt: 4 }}>
         <Typography variant="h6">Aucun résultat</Typography>
       </Box>
     );
   }
-  
+
   return (
     <>
       {isTabletOrMobile ? (

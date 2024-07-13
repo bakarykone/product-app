@@ -81,7 +81,7 @@ const ProductItem = ({ product }) => {
                 color: "text.primary",
               }}
             >
-            <br />
+              <br />
               <Typography component="span" sx={{ color: "text.primary" }}>
                 Note: {product.rating}
               </Typography>
