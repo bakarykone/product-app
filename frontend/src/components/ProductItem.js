@@ -59,7 +59,7 @@ const ProductItem = ({ product }) => {
             onClick={handleDelete}
             sx={{
               right: 100,
-              zIndex: 2, 
+              zIndex: 2,
             }}
           >
             <ClearIcon />
@@ -74,8 +74,17 @@ const ProductItem = ({ product }) => {
               Prix: ${product.price.toFixed(2)}
             </Typography>
             <br />
-            <Typography component="span" sx={{ color: "text.primary" }}>
-              Note: {product.rating}
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                color: "text.primary",
+              }}
+            >
+            <br />
+              <Typography component="span" sx={{ color: "text.primary" }}>
+                Note: {product.rating}
+              </Typography>
               <Rating
                 name="read-only"
                 value={product.rating}
@@ -83,7 +92,7 @@ const ProductItem = ({ product }) => {
                 readOnly
                 sx={{ ml: 1 }}
               />
-            </Typography>
+            </Box>
             <br />
             <Typography component="span" sx={{ color: "text.primary" }}>
               Nombres d'Années de garantie: {product.warranty_years}
