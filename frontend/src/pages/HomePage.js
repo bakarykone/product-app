@@ -14,6 +14,7 @@ import {
   Typography,
   Container,
   Box,
+  TextField,
 } from "@mui/material";
 
 import { toast } from "react-toastify";
@@ -22,10 +23,20 @@ const HomePage = () => {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products);
   const [open, setOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filteredProducts, setFilteredProducts] = useState(products);
 
   useEffect(() => {
     dispatch(fetchProducts());
   }, [dispatch]);
+
+  useEffect(() => {
+    setFilteredProducts(
+      products.filter((product) =>
+        product.name.toLowerCase().includes(searchTerm.toLowerCase())
+      )
+    );
+  }, [searchTerm, products]);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -33,6 +44,10 @@ const HomePage = () => {
 
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
   };
 
   const handleFormSubmit = async (formData) => {
@@ -60,8 +75,15 @@ const HomePage = () => {
           Ajouter un Produit
         </Button>
       </Box>
-      <ProductList products={products} />
-
+      <TextField
+        fullWidth
+        label="Rechercher un produit par son nom"
+        variant="outlined"
+        value={searchTerm}
+        onChange={handleSearchChange}
+        sx={{ mb: 2 }}
+      />
+      <ProductList products={filteredProducts} />
       <Dialog
         open={open}
         onClose={handleClose}
