@@ -121,10 +121,10 @@ const ProductForm = ({ productId, onSubmit }) => {
         </TextField>
         <Box sx={{ display: "flex", justifyContent: "space-between", mt: 2 }}>
           <Button type="submit" color="primary" variant="contained">
-            {productId ? "Update" : "Ajouter"}
+            {productId ? "Modifier" : "Ajouter"}
           </Button>
           <Button color="secondary" variant="contained" onClick={handleCancel}>
-            Cancel
+            Annuler
           </Button>
         </Box>
       </Box>

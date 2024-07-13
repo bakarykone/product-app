@@ -6,6 +6,7 @@ import {
   ListItemSecondaryAction,
   Box,
   Typography,
+  Rating,
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import ClearIcon from "@mui/icons-material/Clear";
@@ -29,7 +30,6 @@ const ProductItem = ({ product }) => {
 
   return (
     <ListItem
-      button
       component={Link}
       to={`/product/${product._id}`}
       sx={{
@@ -37,8 +37,6 @@ const ProductItem = ({ product }) => {
         display: "flex",
         flexDirection: "column",
         alignItems: "flex-start",
-        backgroundColor: "#f7f7f7",
-        borderRadius: 1,
         boxShadow: 7,
         p: 2,
         transition: "transform 0.2s ease-in-out",
@@ -65,19 +63,26 @@ const ProductItem = ({ product }) => {
         secondary={
           <>
             <Typography component="span" sx={{ color: "text.primary" }}>
-              Price: ${product.price.toFixed(2)}
+              Prix: ${product.price.toFixed(2)}
             </Typography>
             <br />
             <Typography component="span" sx={{ color: "text.primary" }}>
-              Rating: {product.rating}
+              Note: {product.rating}
+              <Rating
+                name="read-only"
+                value={product.rating}
+                precision={0.1}
+                readOnly
+                sx={{ ml: 1 }}
+              />
             </Typography>
             <br />
             <Typography component="span" sx={{ color: "text.primary" }}>
-              Warranty Years: {product.warranty_years}
+              Nombres d'Années de garantie: {product.warranty_years}
             </Typography>
             <br />
             <Typography component="span" sx={{ color: "text.primary" }}>
-              Available: {product.available ? "Yes" : "No"}
+              Disponible: {product.available ? "Oui" : "Non"}
             </Typography>
           </>
         }

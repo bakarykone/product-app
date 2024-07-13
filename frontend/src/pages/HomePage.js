@@ -55,7 +55,7 @@ const HomePage = () => {
           alignItems: "center",
         }}
       >
-        <Typography variant="h4">Liste de produits</Typography>
+        <Typography variant="h4">Liste de Produits</Typography>
         <Button variant="contained" color="primary" onClick={handleClickOpen}>
           Ajouter un Produit
         </Button>
