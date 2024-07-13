@@ -36,9 +36,9 @@ const ProductPage = () => {
 
   return (
     <Container maxWidth="md" sx={{ mt: 4 }}>
-      <Box sx={{ mb: 3, display: 'flex', justifyContent: 'center' }}>
+      <Box sx={{ mb: 3, display: "flex", justifyContent: "center" }}>
         <Typography variant="h4" component="h1">
-          {product ? product.name : 'Product'}
+          {product ? product.name : "Product"}
         </Typography>
       </Box>
       <ProductForm productId={id} />
