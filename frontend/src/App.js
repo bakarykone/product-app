@@ -6,6 +6,7 @@ import { ToastContainer } from "react-toastify";
 import { IconButton } from "@mui/material";
 
 import "react-toastify/dist/ReactToastify.css";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { lightTheme, darkTheme } from "./theme/theme";

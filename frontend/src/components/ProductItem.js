@@ -53,7 +53,15 @@ const ProductItem = ({ product }) => {
           {product.name}
         </Typography>
         <ListItemSecondaryAction>
-          <IconButton edge="end" aria-label="delete" onClick={handleDelete}>
+          <IconButton
+            edge="end"
+            aria-label="delete"
+            onClick={handleDelete}
+            sx={{
+              right: 100,
+              zIndex: 2, 
+            }}
+          >
             <ClearIcon />
           </IconButton>
         </ListItemSecondaryAction>
